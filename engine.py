@@ -10,7 +10,6 @@ screen_size=screen.get_size()
 win=pygame.Surface((2000,1000))
 def mainloop():
     run=True
-    
     test_map=Map()
     test_map.load_from_path("Resources\\Maps\\Test_Map\\The Interface",100)
     player=Player()
@@ -62,8 +61,8 @@ def mainloop():
                 player_moved=True
             if player_moved:
                 update_map()
-        camera_x=player.entity.x*100-950
-        camera_y=player.entity.z*100-450
+        camera_x=player.displayt_x*100-950
+        camera_y=player.display_z*100-450
         win.fill((0,0,0))
         win.blit(test_map.base_image,(-camera_x,-camera_y))
         #for x in range(21):
