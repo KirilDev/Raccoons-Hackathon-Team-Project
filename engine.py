@@ -16,6 +16,9 @@ def mainloop():
     player.entity.x=1
     player.entity.y=4
     player.entity.z=1
+    player.display_x=player.entity.x
+    player.display_z=player.entity.z
+    
     map_visibility_surface=pygame.Surface((len(test_map.heightmap[0])*100,len(test_map.heightmap)*100))    
     map_semivisible_surface=pygame.Surface((len(test_map.heightmap[0]),len(test_map.heightmap)))
     map_semivisible_surface.set_colorkey((255,255,255))
@@ -60,9 +63,12 @@ def mainloop():
                 player.move(test_map,"Left")
                 player_moved=True
             if player_moved:
+                print(player.entity.x)
                 update_map()
-        camera_x=player.displayt_x*100-950
+        player.update_state()
+        camera_x=player.display_x*100-950
         camera_y=player.display_z*100-450
+        
         win.fill((0,0,0))
         win.blit(test_map.base_image,(-camera_x,-camera_y))
         #for x in range(21):

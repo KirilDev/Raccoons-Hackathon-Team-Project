@@ -8,59 +8,72 @@ class Player:
         self.display_x=self.entity.x
         self.display_z=self.entity.z
         self.state={}
+        self.heightmap=None
         #self.discovered_surface(())
     def move(self,heightmap,direction):
-        if direction=="Down":
-            if self.entity.z<len(heightmap.heightmap)-1:
-                if heightmap.heightmap[self.entity.z+1][self.entity.x]<=self.entity.y:
-                    #self.entity.z+=1
-                    self.state={
-                        "Type":"Moving Animation",
-                        "Direction":"Down",
-                        "Frames Left":10
-                    }
-        if direction=="Up":
-            if self.entity.z>0:
-                if heightmap.heightmap[self.entity.z-1][self.entity.x]<=self.entity.y:
-                    #self.entity.z-=1
-                    self.state={
-                        "Type":"Moving Animation",
-                        "Direction":"Up",
-                        "Frames Left":10
-                    }
-        if direction=="Right":
-            if self.entity.x<len(heightmap.heightmap[0])-1:
-                if heightmap.heightmap[self.entity.z][self.entity.x+1]<=self.entity.y:
-                    self.entity.x+=1
-                    self.state={
-                        "Type":"Moving Animation",
-                        "Direction":"Right",
-                        "Frames Left":10
-                    }
-        if direction=="Left":
-            if self.entity.x>0:
-                if heightmap.heightmap[self.entity.z][self.entity.x-1]<=self.entity.y:
-                    self.entity.x-=1
-                    self.state={
-                        "Type":"Moving Animation",
-                        "Direction":"Left",
-                        "Frames Left":10
-                    }
-        self.entity.update_vision(heightmap.heightmap)
+        if self.state=={}:
+            if direction=="Down":
+                if self.entity.z<len(heightmap.heightmap)-1:
+                    if heightmap.heightmap[self.entity.z+1][self.entity.x]<=self.entity.y:
+                        #self.entity.z+=1
+                        self.state={
+                            "Type":"Moving Animation",
+                            "Direction":"Down",
+                            "Frames Left":10
+                        }
+            if direction=="Up":
+                if self.entity.z>0:
+                    if heightmap.heightmap[self.entity.z-1][self.entity.x]<=self.entity.y:
+                        #self.entity.z-=1
+                        self.state={
+                            "Type":"Moving Animation",
+                            "Direction":"Up",
+                            "Frames Left":10
+                        }
+            if direction=="Right":
+                if self.entity.x<len(heightmap.heightmap[0])-1:
+                    if heightmap.heightmap[self.entity.z][self.entity.x+1]<=self.entity.y:
+                        #self.entity.x+=1
+                        self.state={
+                            "Type":"Moving Animation",
+                            "Direction":"Right",
+                            "Frames Left":10
+                        }
+            if direction=="Left":
+                if self.entity.x>0:
+                    if heightmap.heightmap[self.entity.z][self.entity.x-1]<=self.entity.y:
+                        #self.entity.x-=1
+                        self.state={
+                            "Type":"Moving Animation",
+                            "Direction":"Left",
+                            "Frames Left":10
+                        }
+        if self.heightmap==None:
+            self.heightmap=heightmap.heightmap
     def update_state(self):
         if self.state!={}:
             if self.state["Type"]=="Moving Animation":
                 self.state["Frames Left"]-=1
                 if self.state["Direction"]=="Up":
-                    self.display_z=self.entity.x-1+0.1*self.state["Frames Left"]
+                    self.display_z=self.entity.z-1+0.1*self.state["Frames Left"]
                 if self.state["Direction"]=="Down":
-                    self.display_z=self.entity.x+1-0.1*self.state["Frames Left"]
+                    self.display_z=self.entity.z+1-0.1*self.state["Frames Left"]
+                if self.state["Direction"]=="Left":
+                    self.display_x=self.entity.x-1+0.1*self.state["Frames Left"]
+                if self.state["Direction"]=="Right":
+                    self.display_x=self.entity.x+1-0.1*self.state["Frames Left"]
                 
                 if self.state["Frames Left"]==0:
                     if self.state["Direction"]=="Up":
                         self.entity.z-=1
                     if self.state["Direction"]=="Down":
                         self.entity.z+=1
+                    if self.state["Direction"]=="Left":
+                        self.entity.x-=1
+                    if self.state["Direction"]=="Right":
+                        self.entity.x+=1
+                    if self.heightmap!=None:
+                        self.entity.update_vision(self.heightmap)
                     self.display_x=self.entity.x
                     self.display_z=self.entity.z
                     self.state={}
