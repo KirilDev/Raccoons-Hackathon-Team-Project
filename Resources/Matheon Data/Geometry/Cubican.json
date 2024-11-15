@@ -1,0 +1,35 @@
+{
+    "Attributes":{
+        "Health":1.3,
+        "Defense":1.2,
+        "Attack":0.8,
+        "Speed":0.7
+    },
+    "Type":"Geometric",
+    "Starting Moves":[
+        {
+            "Type":"Pool",
+            "Selected Elements":1,
+            "Possible Elements":[
+                "Brute Force"
+            ],
+            "Dev Comment":"At least 1 offensive move"
+        },
+        {
+            "Type":"Pool",
+            "Selected Elements":1,
+            "Possible Elements":[
+                "Circulus","Reflectus",""
+            ],
+            "Dev Comment":"At least 1 deffensive move"
+        }
+    ],
+    "Favourite Moves":{
+
+    },
+    "Pokedex Entry":[
+        "Large creatures that resemble a floating cube.",
+        "They are very defensive of their territory, but mainly peaceful.",
+        "Do not feed"
+    ]
+}
