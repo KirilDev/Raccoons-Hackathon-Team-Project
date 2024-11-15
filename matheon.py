@@ -9,7 +9,7 @@ for root,dirs,files in os.walk(r"Resources\\Matheon Data\\"):
         if file.endswith(".json"):
             with open(os.path.join(root,file),"r") as read_file:
                 matheon_data[file[:-5]]=json.loads(read_file.read())
-    class Battle_Matheon:
+class Battle_Matheon:
     def __init__(self,type,level):
         self.type=type
         self.level=level
