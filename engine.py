@@ -63,7 +63,7 @@ def mainloop():
                 player.move(test_map,"Left")
                 player_moved=True
             if player_moved:
-                print(player.entity.x)
+                #print(player.entity.x)
                 update_map()
         player.update_state()
         camera_x=player.display_x*100-950
