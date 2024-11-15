@@ -14,11 +14,11 @@ class Battle_Matheon:
         self.type=type
         self.level=level
         self.data=matheon_data[self.type]
-        self.level_exponent=1+self.level/20
+        self.level_exponent=1+self.level/7
         self.max_health=(1+self.data["Attributes"]["Health"])**self.level_exponent*30
-        self.defense=self.data["Attributes"]["Defense"]**self.level_exponent
-        self.attack=self.data["Attributes"]["Attack"]**self.level_exponent
-        self.speed=self.data["Attributes"]["Speed"]**self.level_exponent
+        self.defense=(1+self.data["Attributes"]["Defense"])**self.level_exponent
+        self.attack=(1+self.data["Attributes"]["Attack"])**self.level_exponent
+        self.speed=(1+self.data["Attributes"]["Speed"])**self.level_exponent
     
     def use_move(self,move_name):
         pass
