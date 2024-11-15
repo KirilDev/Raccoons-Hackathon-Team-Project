@@ -11,7 +11,7 @@
             "Type":"Pool",
             "Selected Elements":1,
             "Possible Elements":[
-                "Brute Force"
+                "Brute Force","Liminal Line"
             ],
             "Dev Comment":"At least 1 offensive move"
         },
@@ -19,9 +19,9 @@
             "Type":"Pool",
             "Selected Elements":1,
             "Possible Elements":[
-                "Circulus","Reflectus",""
+                "Circulus","Reflectus","Invertium"
             ],
-            "Dev Comment":"At least 1 deffensive move"
+            "Dev Comment":"At least 1 deffensive move or a buff"
         }
     ],
     "Favourite Moves":{
