@@ -1,9 +1,9 @@
 {
     "Attributes":{
-        "Health":0.3,
-        "Defense":0.3,
-        "Attack":0.1,
-        "Speed":0.04
+        "Health":0.5,
+        "Defense":0.4,
+        "Attack":0.2,
+        "Speed":0.08
     },
     "Type":"Geometric",
     "Starting Moves":[
