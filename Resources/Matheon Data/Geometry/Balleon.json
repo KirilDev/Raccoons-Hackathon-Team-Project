@@ -1,1 +1,35 @@
+{
+    "Attributes":{
+        "Health":0.4,
+        "Defense":0.2,
+        "Attack":0.1,
+        "Speed":0.06
+    },
+    "Type":"Geometric",
+    "Starting Moves":[
+        {
+            "Type":"Pool",
+            "Selected Elements":1,
+            "Possible Elements":[
+                "Brute Force","Voidpulse","Pyroclasm"
+            ],
+            "Dev Comment":"At least 1 offensive move"
+        },
+        {
+            "Type":"Pool",
+            "Selected Elements":1,
+            "Possible Elements":[
+                "Circulus","Liminal Phase","Invertium Flux"
+            ],
+            "Dev Comment":"At least 1 deffensive move or a buff"
+        }
+    ],
+    "Favourite Moves":{
 
+    },
+    "Pokedex Entry":[
+        "Medium size creatures that resemble a floating ball.",
+        "They are always active taking care of their kind.",
+        "Do not act weird around them."
+    ]
+}
