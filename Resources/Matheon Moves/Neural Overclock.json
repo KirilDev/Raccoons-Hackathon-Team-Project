@@ -1,0 +1,27 @@
+{
+    "Type":"Neutral",
+    "Actions":[
+        {
+
+            "If":{
+                "Type":"Random",
+                "Chance":0.75,
+                "Then":[
+                    {
+                        "Deal Damage":4,
+                        "Apply Effect":
+                        {
+                            "Target":"Enemy",
+                            "Effect":{
+                                "Frail":0.15
+                        }}
+                    },
+                    {
+                        
+                    }
+                ]
+            }
+        }
+        
+    ]
+}
