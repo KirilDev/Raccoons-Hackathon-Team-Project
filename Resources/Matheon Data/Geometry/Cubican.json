@@ -11,7 +11,7 @@
             "Type":"Pool",
             "Selected Elements":1,
             "Possible Elements":[
-                "Brute Force","Liminal Line"
+                "Brute Force","Liminal Line","Pyroclasm","Voidpulse","Umbrablade"
             ],
             "Dev Comment":"At least 1 offensive move"
         },
@@ -19,7 +19,7 @@
             "Type":"Pool",
             "Selected Elements":1,
             "Possible Elements":[
-                "Circulus","Reflectus","Invertium"
+                "Circulus","Reflectus","Invertium","Electroveil","Zephyrstride"
             ],
             "Dev Comment":"At least 1 deffensive move or a buff"
         }

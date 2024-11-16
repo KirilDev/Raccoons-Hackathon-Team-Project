@@ -8,10 +8,15 @@ pygame.init()
 screen=pygame.display.set_mode((0,0))
 screen_size=screen.get_size()
 win=pygame.Surface((2000,1000))
+
+minimal_size = (200, 150)
+minimal_surface = pygame.Surface(minimal_size)
+scaled_map = pygame.transform.scale(win, minimal_size)
+
 def mainloop():
     run=True
     test_map=Map()
-    test_map.load_from_path("Resources\\Maps\\Test_Map\\The Interface",100)
+    test_map.load_from_path("Resources/Maps/Test_Map/The Interface",100)
     player=Player()
     player.entity.x=1
     player.entity.y=4
@@ -83,5 +88,17 @@ def mainloop():
         win.blit(map_visibility_surface,(-camera_x,-camera_y))
         screen.blit(pygame.transform.scale(win,screen_size),(0,0))
         pygame.display.update()
+
+    # def draw_minimap():
+    #     minimap_surface.blit(scaled_map, (0,0))
+
+    #     player_x, player_y = player.rect.center
+
+    #     minimap_x = int(player_x * minimal_size[0] / win.get_width())
+    #     minimap_y = int(player_y * minimal_size[0] / win.get_width())
+
+    #     pygame.draw.rect(minimal_surface, (255,0,0), (minimap_x - 2, minimap_y - 2,4,4))
+    #     win.blit(minimal_surface, (10,10))
+        
 mainloop()
 pygame.quit()
