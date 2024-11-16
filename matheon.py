@@ -85,9 +85,19 @@ def Battle(controlled_by_player,attacked_player,win,screen):
         pygame.draw.ellipse(win,(0,0,0),(1200,400,500,200),20)
         
         if animation_data["Type"]=="Transition Start":
+            win.blit(player_sprite,(60,520))
             animation_data["Frames Left"]-=1
             dark_screen.set_alpha(int(255/72*animation_data["Frames Left"]))
             win.blit(dark_screen,(0,0))
+            if animation_data["Frames Left"]==0:
+                animation_data={
+                    "Type":"Summoning Matheons",
+                    "Frames Left":500,                    
+                }
+        if animation_data["Type"]=="Summoning Matheons":
+            animation_data["Frames Left"]-=1
+            if animation_data["Frames Left"]>440:
+                win.blit(player_sprite,(60-480*(500-animation_data["Frames Left"])/60,520))
         screen.blit(pygame.transform.scale(win,screen.get_size()),(0,0))
         pygame.display.update()
 #This is used for Matheon Testing

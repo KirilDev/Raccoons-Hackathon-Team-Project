@@ -103,6 +103,6 @@ def mainloop(win,screen,data={}):
 
     #     pygame.draw.rect(minimal_surface, (255,0,0), (minimap_x - 2, minimap_y - 2,4,4))
     #     win.blit(minimal_surface, (10,10))
-#Battle(new_matheon1,new_matheon2,screen=screen,win=win)
-mainloop(win,screen)
+Battle(new_matheon1,new_matheon2,screen=screen,win=win)
+#mainloop(win,screen)
 pygame.quit()
