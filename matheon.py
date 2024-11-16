@@ -1,5 +1,6 @@
 from math import *
 from random import *
+from sprite_def import *
 import pygame
 import os
 import json
@@ -60,6 +61,7 @@ def Battle(controlled_by_player,attacked_player,win,screen):
     defender=controlled_by_player
     attacker=attacked_player
     run=True
+    frame=0
     is_battle_screen_running=True
     clock=pygame.time.Clock()
     dark_screen=pygame.Surface((2000,1000))
@@ -76,7 +78,18 @@ def Battle(controlled_by_player,attacked_player,win,screen):
         keys=pygame.key.get_pressed()
         if keys[27]: run=False
         win.fill((25,25,25))
-
+        pygame.draw.ellipse(win,(255,255,255),(20,830,500,200))
+        pygame.draw.ellipse(win,(0,0,0),(20,830,500,200),20)
+        
+        pygame.draw.ellipse(win,(255,255,255),(1200,400,500,200))
+        pygame.draw.ellipse(win,(0,0,0),(1200,400,500,200),20)
+        
+        if animation_data["Type"]=="Transition Start":
+            animation_data["Frames Left"]-=1
+            dark_screen.set_alpha(int(255/72*animation_data["Frames Left"]))
+            win.blit(dark_screen,(0,0))
+        screen.blit(pygame.transform.scale(win,screen.get_size()),(0,0))
+        pygame.display.update()
 #This is used for Matheon Testing
 new_matheon1=Battle_Matheon("Cubican",1)
 new_matheon2=Battle_Matheon("Cubican",1)

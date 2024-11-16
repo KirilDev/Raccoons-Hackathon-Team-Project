@@ -4,6 +4,7 @@ from math import *
 from player import *
 from map import *
 from matheon import *
+
 from time import time
 pygame.init()
 screen=pygame.display.set_mode((0,0))
@@ -77,6 +78,7 @@ def mainloop(win,screen,data={}):
         
         win.fill((0,0,0))
         win.blit(test_map.base_image,(-camera_x,-camera_y))
+        
         #for x in range(21):
             #true_x=player.entity.x-9
             #pygame.draw.line(win,(255,255,255),(x*100-camera_x%100,0),(x*100-camera_x%100,1000),3)
@@ -84,7 +86,8 @@ def mainloop(win,screen,data={}):
                 #true_x=player.entity.y-4
                 #pygame.draw.line(win,(255,255,255),(0,y*100-camera_y%100),(2000,y*100-camera_y%100),3)
                 #pass
-        pygame.draw.rect(win,(255,0,255),(950,450,100,100))
+        #pygame.draw.rect(win,(255,0,255),(950,450,100,100))
+        win.blit(player_map_sprite,(960,460))
         win.blit(test_map.discovered_surface,(-camera_x,-camera_y))
         win.blit(map_visibility_surface,(-camera_x,-camera_y))
         screen.blit(pygame.transform.scale(win,screen_size),(0,0))
@@ -100,6 +103,6 @@ def mainloop(win,screen,data={}):
 
     #     pygame.draw.rect(minimal_surface, (255,0,0), (minimap_x - 2, minimap_y - 2,4,4))
     #     win.blit(minimal_surface, (10,10))
-Battle(new_matheon1,new_matheon2,screen=screen,win=win)
+#Battle(new_matheon1,new_matheon2,screen=screen,win=win)
 mainloop(win,screen)
 pygame.quit()
