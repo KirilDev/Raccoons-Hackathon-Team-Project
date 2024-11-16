@@ -20,11 +20,12 @@ def mainloop(win,screen,data={}):
     run=True
     test_map=Map()
     test_map.load_from_path("Resources/Sprites/Hitbocks",100)
-    test_map.base_image=pygame.image.load("Resources\\Sprites\\e_interface.png")
+    test_map.base_image2=pygame.transform.scale(pygame.image.load("Resources\\Sprites\\e_interface.png"),(test_map.base_image.get_width(),test_map.base_image.get_height()))
+    test_map.base_image2.set_alpha(100)
     player=Player()
     
     player.entity.x=1
-    player.entity.y=4
+    player.entity.y=0
     player.entity.z=1
     player.display_x=player.entity.x
     player.display_z=player.entity.z
@@ -57,10 +58,11 @@ def mainloop(win,screen,data={}):
     camera_x=0
     camera_y=0
     frame=0
+    is_running_this_iteration=True
     clock=pygame.time.Clock()
-    while run: #Mainloop
-        pygame.display.flip()
-        print(player.display_x, player.display_z)
+    while run and is_running_this_iteration: #Mainloop
+        #pygame.display.flip()
+        #print(player.display_x, player.display_z)
         frame+=1
         clock.tick(144)
         #print(clock.get_fps())
@@ -83,9 +85,9 @@ def mainloop(win,screen,data={}):
             if keys[pygame.K_LEFT]:
                 player.move(test_map,"Left")
                 player_moved=True
-            if player_moved:
+            #if player_moved:
                 #print(player.entity.x)
-                update_map()
+                #update_map()
         player.update_state()   
         camera_x=player.display_x*100-950
         camera_y=player.display_z*100-450
@@ -94,6 +96,7 @@ def mainloop(win,screen,data={}):
         enemy.enemyMove()
         enemy.draw(win)
         win.blit(test_map.base_image,(-camera_x,-camera_y))
+        win.blit(test_map.base_image2,(-camera_x,-camera_y))
         
         #for x in range(21):
             #true_x=player.entity.x-9

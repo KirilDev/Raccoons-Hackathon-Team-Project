@@ -24,12 +24,15 @@ class Map:
                 if loaded_pixel in map_data["Layout Data"]:
                     heightmap_tile_line.append(map_data["Layout Data"][loaded_pixel]["Height"])
                 else:
+                    print("Unknown Pixel:",loaded_pixel)
                     heightmap_tile_line.append(1)
             new_heightmap.append(heightmap_tile_line)
-        self.discovered_surface=pygame.Surface((loaded_image.get_width()*100,loaded_image.get_height()*100))
+        self.discovered_surface=pygame.Surface((loaded_image.get_width()*scale_to,loaded_image.get_height()*scale_to))
         #self.discovered_surface.set_alpha(120)
         self.discovered_surface.set_colorkey((255,255,255))
         self.heightmap=new_heightmap
+        for i in self.heightmap:
+            print(i)
         self.base_image=pygame.transform.scale_by(loaded_image,scale_to)
 #test_map=Map()
 #test_map.load_from_path("Resources/Maps/Test_Map/alpha")
