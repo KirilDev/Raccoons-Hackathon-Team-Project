@@ -19,7 +19,7 @@
             "Type":"Pool",
             "Selected Elements":1,
             "Possible Elements":[
-                "Circulus","Reflectus","Invertium","Electroveil","Zephyrstride"
+                "Circulus","Reflectus","Electroveil"
             ],
             "Dev Comment":"At least 1 deffensive move or a buff"
         }
