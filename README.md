@@ -2,5 +2,8 @@
 It is a game
 Recursive Transform Array
 
-TODO:
-Add a map that the player can navigate in.
+we call the creatures Matheons 
+
+TODO: 
+Create a system where the Matheons can battle each other.
+Create a battle system.
