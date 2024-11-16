@@ -1,0 +1,38 @@
+{
+    "Layout Data":{
+        "(255, 255, 255)":{
+            "Height":7
+        },
+        "(51, 51, 51)":{
+            "Height":1
+        },
+        "(102, 102, 102)":{
+            "Height":2
+        },
+        "(153, 153, 153)":{
+            "Height":3
+        },
+        "(204, 204, 204)":{
+            "Height":4
+        },
+        "(0, 0, 0)":{
+            "Height":0
+        },
+        "(255, 0, 0)":{
+            "Height":0,
+            "Data":{
+                "TODO: Add lava, that deals damage every turn":0
+            }
+        },
+        "(0, 255, 255)":{
+            "Height":0,
+            "Data":{
+                "Type":"Ladder"
+            }
+        }
+    }
+
+
+    
+
+}

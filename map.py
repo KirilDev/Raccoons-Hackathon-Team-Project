@@ -26,8 +26,8 @@ class Map:
                 else:
                     heightmap_tile_line.append(1)
             new_heightmap.append(heightmap_tile_line)
-        self.discovered_surfacee=pygame.Surface((loaded_image.get_width()*100,))
+        self.discovered_surfacee=pygame.Surface((loaded_image.get_width()*100, 1))
         self.heightmap=new_heightmap
         self.base_image=pygame.transform.scale_by(loaded_image,scale_to)
 #test_map=Map()
-#test_map.load_from_path("Resources\\Maps\\Test_Map\\alpha")
+#test_map.load_from_path("Resources/Maps/Test_Map/alpha")

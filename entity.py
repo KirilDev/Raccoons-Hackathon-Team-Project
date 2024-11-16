@@ -1,6 +1,6 @@
 #Should handle mainly the standart stuff, visual stuff later. 
 from map import *
-with open("Resources\\Misc\\sight_map.json") as file:
+with open("Resources/Misc/sight_map.json") as file:
     sight_data=json.loads(file.read())
 class Entity:
     def __init__(self,type):
@@ -40,7 +40,7 @@ class Entity:
 """
 
 
-test_surface=pygame.image.load("Resources\\Maps\\Test_Map\\alpha.png")
+test_surface=pygame.image.load("Resources/Maps/Test_Map/alpha.png")
 seen_surface=pygame.Surface((1,1))
 seen_surface.fill((255,255,0))
 seen_surface.set_alpha(120)
@@ -54,7 +54,7 @@ blocked_surface.fill((0,255,255))
 blocked_surface.set_alpha(120)
 
 test_map=Map()
-test_map.load_from_path("Resources\\Maps\\Test_Map\\alpha")
+test_map.load_from_path("Resources/Maps/Test_Map/alpha")
 creature=Entity("")
 creature.x=7
 creature.z=25

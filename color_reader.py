@@ -1,5 +1,5 @@
 import pygame
-path=pygame.image.load("Resources\\Maps\\Test_Map\\The Interface.png")
+path=pygame.image.load("Resources/Maps/Test_Map/The Interface.png")
 unique_colors=set()
 for x in range(path.get_width()):
     for y in range(path.get_height()):
