@@ -3,6 +3,7 @@ import pygame
 from math import *
 from player import *
 from map import *
+from matheon import *
 from time import time
 pygame.init()
 screen=pygame.display.set_mode((0,0))
@@ -13,7 +14,7 @@ minimal_size = (200, 150)
 minimal_surface = pygame.Surface(minimal_size)
 scaled_map = pygame.transform.scale(win, minimal_size)
 
-def mainloop():
+def mainloop(win,screen,data={}):
     run=True
     test_map=Map()
     test_map.load_from_path("Resources/Maps/Test_Map/The Interface",100)
@@ -99,6 +100,6 @@ def mainloop():
 
     #     pygame.draw.rect(minimal_surface, (255,0,0), (minimap_x - 2, minimap_y - 2,4,4))
     #     win.blit(minimal_surface, (10,10))
-        
-mainloop()
+Battle(new_matheon1,new_matheon2,screen=screen,win=win)
+mainloop(win,screen)
 pygame.quit()
