@@ -1,0 +1,75 @@
+{
+    "Attributes":{
+        "Health":0.3,
+        "Defense":0.3,
+        "Attack":0.1,
+        "Speed":0.04
+    },
+    "Type":"Geometric",
+    "Starting Moves":[
+        {
+            "Type":"Pool",
+            "Selected Elements":1,
+            "Possible Elements":[
+                "Brute Force","Liminal Line"
+            ],
+            "Dev Comment":"At least 1 offensive move"
+        },
+        {
+            "Type":"Pool",
+            "Selected Elements":1,
+            "Possible Elements":[
+                "Circulus","Reflectus","Invertium"
+            ],
+            "Dev Comment":"At least 1 deffensive move or a buff"
+        },
+                {
+            "Type":"Pool",
+            "Selected Elements":1,
+            "Possible Elements":[
+                "Zephyrstride","Pyroclasm","Electroveil"
+            ],
+            "Dev Comment":"At least 1 elemental offensive or deffensive move"
+        },
+        {
+            "Type":"Pool",
+            "Selected Elements":1,
+            "Possible Elements":[
+                "Aetherwarp","Chronoflux","Voidpulse"
+            ],
+            "Dev Comment":"At least 1 space-time move or a buff"
+        },
+        {
+            "Type":"Pool",
+            "Selected Elements":1,
+            "Possible Elements":[
+                "Umbrablade","Eclipsion","Duskfang"
+            ],
+            "Dev Comment":"At least 1 darkness based move or a buff"
+        },
+        {
+            "Type":"Pool",
+            "Selected Elements":1,
+            "Possible Elements":[
+                "Neural Overclock","Circuit Siphon","Photon Rift"
+            ],
+            "Dev Comment":"At least 1 tech ability"
+        },
+        {
+            "Type":"Pool",
+            "Selected Elements":1,
+            "Possible Elements":[
+                "Liminal Phase","Invertium Flux","Prismatic Shard"
+            ],
+            "Dev Comment":"At least 1 abstract move or a buff"
+        }
+    ],
+    "Favourite Moves":{
+
+    },
+    "Pokedex Entry":[
+        "Large creatures that resemble a floating cube.",
+        "They are very defensive of their territory, but mainly peaceful.",
+        "Do not feed"
+    ]
+}
