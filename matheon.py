@@ -92,19 +92,39 @@ def Battle(controlled_by_player,attacked_player,win,screen):
             if animation_data["Frames Left"]==0:
                 animation_data={
                     "Type":"Summoning Matheons",
-                    "Frames Left":500,                    
+                    "Frames Left":500,
+                    "Pokeball X":320,
+                    "Pokeball Y":700,
+                    "Pokeball Velocity":[0.45,-8.5],
+                    "Pokeball G Acceleration":0.21                   
                 }
         if animation_data["Type"]=="Summoning Matheons":
             animation_data["Frames Left"]-=1
+            if animation_data["Frames Left"]>400:
+                animation_data["Pokeball Velocity"][1]+=animation_data["Pokeball G Acceleration"]
+                animation_data["Pokeball Y"]+=animation_data["Pokeball Velocity"][1]
+                animation_data["Pokeball X"]+=animation_data["Pokeball Velocity"][0]
+                pygame.draw.polygon(win,(0,0,0),[
+                    [animation_data["Pokeball X"]+cos(animation_data["Pokeball Y"]+tau/6*i)*(27-(i%2==1)*13)
+                     ,animation_data["Pokeball Y"]+sin(animation_data["Pokeball Y"]+tau/6*i)*(27-(i%2==1)*13)]
+                     for i in range(6)]
+                    ,5)
+                #pygame.draw.polygon(win,(0,0,0),[],5)
             if animation_data["Frames Left"]>440:
                 win.blit(player_sprite,(60-480*(500-animation_data["Frames Left"])/60,520))
-            if 440>=animation_data["Frames Left"]>340:
-                alpha=(441-animation_data["Frames Left"])/100
+            if 380>=animation_data["Frames Left"]>280:
+                alpha=(421-animation_data["Frames Left"])/100
                 attacker.sprite.set_alpha(alpha*255)
                 defender.sprite.set_alpha(alpha*255)
                 win.blit(attacker.sprite,(1250,100))
                 win.blit(defender.sprite,(70,530))
-                
+            if animation_data==280:
+                animation_data={
+                    "Type":"None"
+                }
+        if animation_data["Type"]=="None":
+            win.blit(attacker.sprite,(1250,100))
+            win.blit(defender.sprite,(70,530))
         screen.blit(pygame.transform.scale(win,screen.get_size()),(0,0))
         pygame.display.update()
 #This is used for Matheon Testing
