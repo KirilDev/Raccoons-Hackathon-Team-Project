@@ -3,14 +3,15 @@ from enemy import *
 import random
 import pygame
 
-# pygame.init()
-# screen = pygame.display.set_mode((2000, 1000))
-#unseen_surface=pygame.Surface((128,128))
-#unseen_surface.set_alpha()
 class Player:
     def __init__(self):
         self.entity=Entity("Pis Dirst")
         self.entity.active=True
+<<<<<<< HEAD
+        self.entity.health_level=100
+        # self.player_rect = pygame.Rect(0,0,0,0)
+=======
+>>>>>>> a1679899ea6c5618d3d84b70e3043f52734bece2
         self.display_x=self.entity.x
         self.display_z=self.entity.z
         self.state={}
@@ -114,12 +115,11 @@ class Player:
 
 # while True:
 #     enemy.enemyMove()
-#     # enemy.draw(screen)
 
-#     # Entity.x += Entity.entity.x
-#     # Entity.z += Entity.entity.z
-#     # # Entity.player_rect.x = Entity.entity.x
-#     # # Entity.player_rect.z = Entity.entity.z
+#     Entity.x += Entity.entity.x
+#     Entity.z += Entity.entity.z
+#     Entity.player_rect.x = Entity.entity.x
+#     Entity.player_rect.z = Entity.entity.z
     
-#     # # if player_rect.colliderect(pygame.Rect(enemy.x, enemy.y, 20, 20)):
-#     # #     player_health -= enemy.damage
+#     if player_rect.colliderect(pygame.Rect(enemy.x, enemy.y, 20, 20)):
+#         player_health -= enemy.damage

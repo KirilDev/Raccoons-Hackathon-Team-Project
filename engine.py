@@ -6,11 +6,12 @@ from map import *
 from matheon import *
 
 from time import time
+import enemy
 pygame.init()
 screen=pygame.display.set_mode((0,0))
 screen_size=screen.get_size()
 win=pygame.Surface((2000,1000))
-
+pygame.display.set_caption('The Raccoons Hackathon Project - Placehoolder')
 minimal_size = (200, 150)
 minimal_surface = pygame.Surface(minimal_size)
 scaled_map = pygame.transform.scale(win, minimal_size)
@@ -20,11 +21,20 @@ def mainloop(win,screen,data={}):
     test_map=Map()
     test_map.load_from_path("Resources/Maps/Test_Map/The Interface",100)
     player=Player()
+    
     player.entity.x=1
     player.entity.y=4
     player.entity.z=1
     player.display_x=player.entity.x
     player.display_z=player.entity.z
+    
+    enemy=EnemyController(1, 1, 50, 60, (255, 0, 0))
+    
+    enemy.entity.x=1
+    enemy.entity.y=4
+    enemy.entity.z=1
+    enemy.x=enemy.entity.x
+    enemy.z=enemy.entity.z
     
     map_visibility_surface=pygame.Surface((len(test_map.heightmap[0])*100,len(test_map.heightmap)*100))    
     map_semivisible_surface=pygame.Surface((len(test_map.heightmap[0]),len(test_map.heightmap)))
@@ -32,6 +42,7 @@ def mainloop(win,screen,data={}):
     map_visibility_surface.set_colorkey((255,255,255))
     map_visibility_surface.set_alpha(100)
     player.entity.update_vision(test_map.heightmap)
+    
     def update_map():
         map_visibility_surface.fill((0,0,0))
         for i in player.entity.squares_seen:
@@ -47,6 +58,8 @@ def mainloop(win,screen,data={}):
     frame=0
     clock=pygame.time.Clock()
     while run: #Mainloop
+        pygame.display.flip()
+        print(player.display_x, player.display_z)
         frame+=1
         clock.tick(144)
         #print(clock.get_fps())
@@ -72,11 +85,13 @@ def mainloop(win,screen,data={}):
             if player_moved:
                 #print(player.entity.x)
                 update_map()
-        player.update_state()
+        player.update_state()   
         camera_x=player.display_x*100-950
         camera_y=player.display_z*100-450
         
         win.fill((0,0,0))
+        enemy.enemyMove()
+        enemy.draw(win)
         win.blit(test_map.base_image,(-camera_x,-camera_y))
         
         #for x in range(21):
@@ -92,7 +107,6 @@ def mainloop(win,screen,data={}):
         win.blit(map_visibility_surface,(-camera_x,-camera_y))
         screen.blit(pygame.transform.scale(win,screen_size),(0,0))
         pygame.display.update()
-
     # def draw_minimap():
     #     minimap_surface.blit(scaled_map, (0,0))
 
