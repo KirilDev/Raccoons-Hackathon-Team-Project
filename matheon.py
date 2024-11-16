@@ -34,9 +34,11 @@ class Battle_Matheon:
         self.enemy=None
         self.new_deffense=self.base_defense
         self.new_attack=self.base_attack
-        self.new_max_health=self.base_max_health
+        self.new_health=self.base_max_health
         self.new_speed=self.base_speed
         self.sprite=pygame.transform.scale(pygame.image.load(self.data["Sprite Path"]),(400,400))
+        self.display_health_surface=pygame.Surface((700,200))
+        self.display_health_surface.set_colorkey((234,23,4))
     def use_move(self,move_name):
         self.used_move=move_data[move_name]
         for action in self.used_move["Actions"]:
@@ -52,11 +54,22 @@ class Battle_Matheon:
             self.enemy.deal_damage(self,action["Deal Damage"])
     def deal_damage(self,attacker,how_much):
         self.taken_damage=attacker.attack*how_much*(2/3+random())/self.defense
-        self.health-=self.taken_damage
-        print(self.taken_damage)
+        self.new_health-=self.taken_damage
+        #print(self.taken_damage)
     def apply_effect(self,effect,by_who=None):
         if "Frail" in effect:
             self.defense*=1-effect["Frail"]
+    def draw_bar(self):
+        self.display_health_surface.fill((234,23,4))
+        self.health_q=self.new_health/self.base_max_health
+        pygame.draw.rect(self.display_health_surface,(200,200,200),(0,0,700,200),0,17)
+        pygame.draw.rect(self.display_health_surface,(234,23,4),(20,10,660,60),0,15)
+        pygame.draw.rect(self.display_health_surface,(255-255*self.health_q,255*self.health_q,4),(24,14,652,52),0,15)
+        center(self.display_health_surface,render_text(self.type,size=23,color=(25,25,25)),70,100)
+class Button:
+    def __init__(self,text,color,x_size,y_size):
+        self.text=render_text(text,30)
+        #self.sprite=pygame.Surface((self.text))
 def Battle(controlled_by_player,attacked_player,win,screen):
     defender=controlled_by_player
     attacker=attacked_player
@@ -83,7 +96,10 @@ def Battle(controlled_by_player,attacked_player,win,screen):
         
         pygame.draw.ellipse(win,(255,255,255),(1200,400,500,200))
         pygame.draw.ellipse(win,(0,0,0),(1200,400,500,200),20)
-        
+        win.blit(attacker.sprite,(1250,100))
+        defender.draw_bar()
+        attacker.draw_bar()
+        win.blit(attacker.display_health_surface,(450,30))
         if animation_data["Type"]=="Transition Start":
             win.blit(player_sprite,(60,520))
             animation_data["Frames Left"]-=1
@@ -93,38 +109,42 @@ def Battle(controlled_by_player,attacked_player,win,screen):
                 animation_data={
                     "Type":"Summoning Matheons",
                     "Frames Left":500,
-                    "Pokeball X":320,
+                    "Pokeball X":220,
                     "Pokeball Y":700,
                     "Pokeball Velocity":[0.45,-8.5],
                     "Pokeball G Acceleration":0.21                   
                 }
         if animation_data["Type"]=="Summoning Matheons":
             animation_data["Frames Left"]-=1
+           
+                
             if animation_data["Frames Left"]>400:
                 animation_data["Pokeball Velocity"][1]+=animation_data["Pokeball G Acceleration"]
                 animation_data["Pokeball Y"]+=animation_data["Pokeball Velocity"][1]
                 animation_data["Pokeball X"]+=animation_data["Pokeball Velocity"][0]
                 pygame.draw.polygon(win,(0,0,0),[
-                    [animation_data["Pokeball X"]+cos(animation_data["Pokeball Y"]+tau/6*i)*(27-(i%2==1)*13)
-                     ,animation_data["Pokeball Y"]+sin(animation_data["Pokeball Y"]+tau/6*i)*(27-(i%2==1)*13)]
+                    [animation_data["Pokeball X"]+cos(animation_data["Pokeball Y"]/20+tau/6*i)*(27-(i%2==1)*6)
+                     ,animation_data["Pokeball Y"]+sin(animation_data["Pokeball Y"]/20+tau/6*i)*(27-(i%2==1)*6)]
                      for i in range(6)]
                     ,5)
                 #pygame.draw.polygon(win,(0,0,0),[],5)
             if animation_data["Frames Left"]>440:
                 win.blit(player_sprite,(60-480*(500-animation_data["Frames Left"])/60,520))
-            if 380>=animation_data["Frames Left"]>280:
-                alpha=(421-animation_data["Frames Left"])/100
-                attacker.sprite.set_alpha(alpha*255)
+            if 401>animation_data["Frames Left"]>370:
+                pygame.draw.circle(win,(255,255,255),(270,870),20*1.2**(400-animation_data["Frames Left"]),12)
+            if 395>=animation_data["Frames Left"]>295:
+                alpha=(396-animation_data["Frames Left"])/100
                 defender.sprite.set_alpha(alpha*255)
-                win.blit(attacker.sprite,(1250,100))
                 win.blit(defender.sprite,(70,530))
-            if animation_data==280:
+            if animation_data["Frames Left"]==295:
                 animation_data={
                     "Type":"None"
                 }
         if animation_data["Type"]=="None":
-            win.blit(attacker.sprite,(1250,100))
             win.blit(defender.sprite,(70,530))
+            win.blit(attacker.display_health_surface,(690,730))
+            #pygame.draw.rect(win,(255,255,255),())
+            #pygame.draw.rect(win,(255,255,0),())
         screen.blit(pygame.transform.scale(win,screen.get_size()),(0,0))
         pygame.display.update()
 #This is used for Matheon Testing
