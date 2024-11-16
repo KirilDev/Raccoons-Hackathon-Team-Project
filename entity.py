@@ -11,6 +11,7 @@ class Entity:
         self.z=0
         self.squares_seen=[]
         self.walls_seen=[]
+        self.health_level=100
     def update_vision(self,heightmap):
         visible_tiles=set()
         checked_tiles=set()
@@ -36,7 +37,6 @@ class Entity:
         self.squares_seen=[[self.x,self.y,self.z]]+[[int(ii)+[self.x,self.y,self.z][II] for II,ii in enumerate(i[1:-1].split(","))] for i in visible_tiles]
         self.walls_seen=[[self.x,self.y,self.z]]+[[int(ii)+[self.x,self.y,self.z][II] for II,ii in enumerate(i[1:-1].split(","))] for i in walls_seen]
         self.squares_un_seen=[[int(ii)+[self.x,self.y,self.z][II] for II,ii in enumerate(i[1:-1].split(","))] for i in blocked_tiles]
-
 """
 
 
