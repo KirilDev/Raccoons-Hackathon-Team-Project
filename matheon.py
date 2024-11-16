@@ -1,5 +1,6 @@
 from math import *
 from random import *
+from sprite_def import *
 import pygame
 import os
 import json
@@ -11,7 +12,11 @@ for root,dirs,files in os.walk(r"Resources/Matheon Data/"):
                 matheon_data[file[:-5]]=json.loads(read_file.read())
 
 move_data={}
+<<<<<<< HEAD
 for root,dirs,files in os.walk(r"Resources/Matheon Moves/"):
+=======
+for root,dirs,files in os.walk(r"Resources\\Matheon Moves\\"):
+>>>>>>> a1679899ea6c5618d3d84b70e3043f52734bece2
     for file in files:
         if file.endswith(".json"):
             with open(os.path.join(root,file),"r") as read_file:
@@ -22,20 +27,39 @@ class Battle_Matheon:
         self.level=level
         self.data=matheon_data[self.type]
         self.level_exponent=1+self.level/7
+<<<<<<< HEAD
         self.max_health=(1+self.data["Attributes"]["Health"])**self.level_exponent*30
         self.defense=(1+self.data["Attributes"]["Defense"])**self.level_exponent
         self.attack=(1+self.data["Attributes"]["Attack"])**self.level_exponent
         self.speed=(1+self.data["Attributes"]["Speed"])**self.level_exponent
+=======
+        self.base_max_health=(1+self.data["Attributes"]["Health"])**self.level_exponent*30
+        self.base_defense=(1+self.data["Attributes"]["Defense"])**self.level_exponent
+        self.base_attack=(1+self.data["Attributes"]["Attack"])**self.level_exponent
+        self.base_speed=(1+self.data["Attributes"]["Speed"])**self.level_exponent
+>>>>>>> a1679899ea6c5618d3d84b70e3043f52734bece2
         self.known_moves=[]
         for i in self.data["Starting Moves"]:
             if i["Type"]=="Pool":
                 self.known_moves+=sample(i["Possible Elements"],i["Selected Elements"])
+<<<<<<< HEAD
         print(self.known_moves)
         self.enemy=None
     def use_move(self,move_name):
         self.used_move=move_data[move_name]
         for action in self.used_move["Actions"]:
 
+=======
+        self.enemy=None
+        self.new_deffense=self.base_defense
+        self.new_attack=self.base_attack
+        self.new_max_health=self.base_max_health
+        self.new_speed=self.base_speed
+        
+    def use_move(self,move_name):
+        self.used_move=move_data[move_name]
+        for action in self.used_move["Actions"]:
+>>>>>>> a1679899ea6c5618d3d84b70e3043f52734bece2
             self.do_action(action)
     def do_action(self,action):
         print(action)
@@ -48,6 +72,7 @@ class Battle_Matheon:
             self.enemy.deal_damage(self,action["Deal Damage"])
     def deal_damage(self,attacker,how_much):
         self.taken_damage=attacker.attack*how_much*(2/3+random())/self.defense
+<<<<<<< HEAD
         print(self.taken_damage)
 def link(p1,p2):
     p1.enemy=p2
@@ -57,4 +82,59 @@ new_matheon1=Battle_Matheon("Cubican",1)
 new_matheon2=Battle_Matheon("Cubican",1)
 link(new_matheon1,new_matheon2)
 new_matheon1.use_move("Brute Force")
+=======
+        self.health-=self.taken_damage
+        print(self.taken_damage)
+    def apply_effect(self,effect,by_who=None):
+        if "Frail" in effect:
+            self.defense*=1-effect["Frail"]
+def Battle(controlled_by_player,attacked_player,win,screen):
+    defender=controlled_by_player
+    attacker=attacked_player
+    run=True
+    frame=0
+    is_battle_screen_running=True
+    clock=pygame.time.Clock()
+    dark_screen=pygame.Surface((2000,1000))
+    animation_data={
+        "Type":"Transition Start",
+        "Frames Left":72
+        }
+    while run and is_battle_screen_running: #Mainloop
+        frame+=1
+        clock.tick(144)
+        for event in pygame.event.get():
+            if event.type==pygame.QUIT:
+                run=False
+        keys=pygame.key.get_pressed()
+        if keys[27]: run=False
+        win.fill((25,25,25))
+        pygame.draw.ellipse(win,(255,255,255),(20,830,500,200))
+        pygame.draw.ellipse(win,(0,0,0),(20,830,500,200),20)
+        
+        pygame.draw.ellipse(win,(255,255,255),(1200,400,500,200))
+        pygame.draw.ellipse(win,(0,0,0),(1200,400,500,200),20)
+        
+        if animation_data["Type"]=="Transition Start":
+            win.blit(player_sprite,(60,520))
+            animation_data["Frames Left"]-=1
+            dark_screen.set_alpha(int(255/72*animation_data["Frames Left"]))
+            win.blit(dark_screen,(0,0))
+            if animation_data["Frames Left"]==0:
+                animation_data={
+                    "Type":"Summoning Matheons",
+                    "Frames Left":500,                    
+                }
+        if animation_data["Type"]=="Summoning Matheons":
+            animation_data["Frames Left"]-=1
+            if animation_data["Frames Left"]>440:
+                win.blit(player_sprite,(60-480*(500-animation_data["Frames Left"])/60,520))
+        screen.blit(pygame.transform.scale(win,screen.get_size()),(0,0))
+        pygame.display.update()
+#This is used for Matheon Testing
+new_matheon1=Battle_Matheon("Cubican",1)
+new_matheon2=Battle_Matheon("Cubican",1)
+
+#new_matheon1.use_move("Brute Force")
+>>>>>>> a1679899ea6c5618d3d84b70e3043f52734bece2
 #print(new_matheon2.taken_damage)

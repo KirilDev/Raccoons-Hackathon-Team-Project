@@ -26,7 +26,10 @@ class Map:
                 else:
                     heightmap_tile_line.append(1)
             new_heightmap.append(heightmap_tile_line)
+<<<<<<< HEAD
         self.discovered_surfacee=pygame.Surface((loaded_image.get_width()*100, 1))
+=======
+>>>>>>> a1679899ea6c5618d3d84b70e3043f52734bece2
         self.discovered_surface=pygame.Surface((loaded_image.get_width()*100,loaded_image.get_height()*100))
         #self.discovered_surface.set_alpha(120)
         self.discovered_surface.set_colorkey((255,255,255))

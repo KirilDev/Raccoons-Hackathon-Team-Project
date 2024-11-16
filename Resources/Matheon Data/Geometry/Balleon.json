@@ -1,9 +1,9 @@
 {
     "Attributes":{
-        "Health":0.3,
-        "Defense":0.3,
+        "Health":0.4,
+        "Defense":0.2,
         "Attack":0.1,
-        "Speed":0.04
+        "Speed":0.06
     },
     "Type":"Geometric",
     "Starting Moves":[
@@ -11,7 +11,7 @@
             "Type":"Pool",
             "Selected Elements":1,
             "Possible Elements":[
-                "Brute Force","Liminal Line","Umbrablade"
+                "Brute Force","Voidpulse","Pyroclasm"
             ],
             "Dev Comment":"At least 1 offensive move"
         },
@@ -19,7 +19,7 @@
             "Type":"Pool",
             "Selected Elements":1,
             "Possible Elements":[
-                "Circulus","Reflectus","Electroveil"
+                "Circuit Siphon","Reflectus","Neural Overclock"
             ],
             "Dev Comment":"At least 1 deffensive move or a buff"
         }
@@ -28,8 +28,8 @@
 
     },
     "Pokedex Entry":[
-        "Large creatures that resemble a floating cube.",
-        "They are very defensive of their territory, but mainly peaceful.",
-        "Do not feed."
+        "Medium size creatures that resemble a floating ball.",
+        "They are always active taking care of their kind.",
+        "Do not act weird around them."
     ]
 }

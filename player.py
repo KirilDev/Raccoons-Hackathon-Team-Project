@@ -7,12 +7,17 @@ class Player:
     def __init__(self):
         self.entity=Entity("Pis Dirst")
         self.entity.active=True
+<<<<<<< HEAD
         self.entity.health_level=100
         # self.player_rect = pygame.Rect(0,0,0,0)
+=======
+>>>>>>> a1679899ea6c5618d3d84b70e3043f52734bece2
         self.display_x=self.entity.x
         self.display_z=self.entity.z
         self.state={}
         self.heightmap=None
+        self.entity.health_level=100
+        self.player_rect = pygame.Rect(0,0,0,0)
         #self.discovered_surface(())
     def move(self,heightmap,direction):
         if self.state=={}:
