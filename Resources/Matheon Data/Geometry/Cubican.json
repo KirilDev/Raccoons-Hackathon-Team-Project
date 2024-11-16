@@ -11,7 +11,7 @@
             "Type":"Pool",
             "Selected Elements":1,
             "Possible Elements":[
-                "Brute Force","Liminal Line","Pyroclasm","Voidpulse","Umbrablade"
+                "Brute Force","Liminal Line","Umbrablade"
             ],
             "Dev Comment":"At least 1 offensive move"
         },
@@ -30,6 +30,6 @@
     "Pokedex Entry":[
         "Large creatures that resemble a floating cube.",
         "They are very defensive of their territory, but mainly peaceful.",
-        "Do not feed"
+        "Do not feed."
     ]
 }
