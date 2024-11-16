@@ -12,11 +12,7 @@ for root,dirs,files in os.walk(r"Resources/Matheon Data/"):
                 matheon_data[file[:-5]]=json.loads(read_file.read())
 
 move_data={}
-<<<<<<< HEAD
-for root,dirs,files in os.walk(r"Resources/Matheon Moves/"):
-=======
 for root,dirs,files in os.walk(r"Resources\\Matheon Moves\\"):
->>>>>>> a1679899ea6c5618d3d84b70e3043f52734bece2
     for file in files:
         if file.endswith(".json"):
             with open(os.path.join(root,file),"r") as read_file:
