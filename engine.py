@@ -26,13 +26,13 @@ def mainloop():
     player.display_x=player.entity.x
     player.display_z=player.entity.z
     
-    enemy=EnemyController(1, 1, 3, 3, (255, 0, 0))
+    enemy=EnemyController(950, 450, 50, 60, (255, 0, 0))
     
     enemy.entity.x=1
     enemy.entity.y=4
     enemy.entity.z=1
-    enemy.display_x=enemy.entity.x
-    enemy.display_z=enemy.entity.z
+    enemy.x=enemy.entity.x
+    enemy.z=enemy.entity.z
     
     map_visibility_surface=pygame.Surface((len(test_map.heightmap[0])*100,len(test_map.heightmap)*100))    
     map_semivisible_surface=pygame.Surface((len(test_map.heightmap[0]),len(test_map.heightmap)))
@@ -56,9 +56,8 @@ def mainloop():
     frame=0
     clock=pygame.time.Clock()
     while run: #Mainloop
-        enemy.enemyMove()
-        enemy.draw(win)
         pygame.display.flip()
+        print(player.display_x, player.display_z)
         frame+=1
         clock.tick(144)
         #print(clock.get_fps())
@@ -84,11 +83,13 @@ def mainloop():
             if player_moved:
                 #print(player.entity.x)
                 update_map()
-        player.update_state()
+        player.update_state()   
         camera_x=player.display_x*100-950
         camera_y=player.display_z*100-450
         
         win.fill((0,0,0))
+        enemy.enemyMove()
+        enemy.draw(win)
         win.blit(test_map.base_image,(-camera_x,-camera_y))
         #for x in range(21):
             #true_x=player.entity.x-9
