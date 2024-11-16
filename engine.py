@@ -24,12 +24,12 @@ def mainloop(win,screen,data={}):
     test_map.base_image2.set_alpha(100)
     test_map.base_image.blit(test_map.base_image2,(0,0))
     pygame.image.save(test_map.base_image,"HH.png")
-    exit()
+    #exit()
     player=Player()
     
-    player.entity.x=1
+    player.entity.x=5
     player.entity.y=0
-    player.entity.z=1
+    player.entity.z=5
     player.display_x=player.entity.x
     player.display_z=player.entity.z
     
