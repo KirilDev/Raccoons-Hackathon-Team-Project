@@ -1,19 +1,23 @@
 {
     "Type":"Neutral",
+            "Dev comment":" Sup increases self speed.",
+            "Dev comment":" Dup increases self defense.",
     "Actions":[
         {
 
             "If":{
                 "Type":"Random",
-                "Chance":0.75,
+                "Chance":0.30,
                 "Then":[
                     {
-                        "Deal Damage":4,
                         "Apply Effect":
                         {
-                            "Target":"Enemy",
+                            "Target":"Self",
                             "Effect":{
-                                "Frail":0.15
+                                "Hup":0.10,
+                                "Pup":0.04,
+                                "Sup":0.02,
+                                "Dup":0.08
                         }}
                     },
                     {
