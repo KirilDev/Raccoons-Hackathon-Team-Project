@@ -26,7 +26,7 @@ def mainloop():
     player.display_x=player.entity.x
     player.display_z=player.entity.z
     
-    enemy=EnemyController(950, 450, 50, 60, (255, 0, 0))
+    enemy=EnemyController(1, 1, 50, 60, (255, 0, 0))
     
     enemy.entity.x=1
     enemy.entity.y=4
