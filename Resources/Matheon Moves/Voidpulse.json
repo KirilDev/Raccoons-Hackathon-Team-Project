@@ -1,0 +1,28 @@
+{
+    "Type":"Neutral",
+    "DEv comment: Delay makes opponent slower.",  
+    "Actions":[
+        {
+
+            "If":{
+                "Type":"Random",
+                "Chance":0.60,
+                "Then":[
+                    {
+                        "Deal Damage":6,
+                        "Apply Effect":
+                        {
+                            "Target":"Enemy",
+                            "Effect":{
+                                "Delay":0.02 
+                        }}
+                    },
+                    {
+                        
+                    }
+                ]
+            }
+        }
+        
+    ]
+}

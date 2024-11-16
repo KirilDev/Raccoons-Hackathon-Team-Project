@@ -1,9 +1,9 @@
 {
     "Attributes":{
-        "Health":0.2,
+        "Health":0.4,
         "Defense":0.2,
-        "Attack":0.2,
-        "Speed":0.08
+        "Attack":0.1,
+        "Speed":0.06
     },
     "Type":"Geometric",
     "Starting Moves":[
@@ -11,7 +11,7 @@
             "Type":"Pool",
             "Selected Elements":1,
             "Possible Elements":[
-                "Brute Force","Pyroclasm","Umbrablade"
+                "Brute Force","Voidpulse","Pyroclasm"
             ],
             "Dev Comment":"At least 1 offensive move"
         },
@@ -19,7 +19,7 @@
             "Type":"Pool",
             "Selected Elements":1,
             "Possible Elements":[
-                "Neural Overclock","Circuit Siphon","Chronoflux"
+                "Circulus","Liminal Phase","Invertium Flux"
             ],
             "Dev Comment":"At least 1 deffensive move or a buff"
         }
@@ -28,8 +28,8 @@
 
     },
     "Pokedex Entry":[
-        "Small creatures in a shape of prism.",
-        "They are mostly in a rush, therefore nervous.",
-        "Be careful not to distress them. Do not pet."
+        "Medium size creatures that resemble a floating ball.",
+        "They are always active taking care of their kind.",
+        "Do not act weird around them."
     ]
 }
