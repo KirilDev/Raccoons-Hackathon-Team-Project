@@ -22,22 +22,14 @@
                 "Neural Overclock","Circuit Siphon","Chronoflux"
             ],
             "Dev Comment":"At least 1 deffensive move or a buff"
-        },
-        {
-            "Type":"Pool",
-            "Selected Elements":1,
-            "Possible Elements":[
-                "Liminal Phase","Invertium Flux","Prismatic Shard"
-            ],
-            "Dev Comment":"At least 1 abstract move or a buff"
         }
     ],
     "Favourite Moves":{
 
     },
     "Pokedex Entry":[
-        "Large creatures that resemble a floating cube.",
-        "They are very defensive of their territory, but mainly peaceful.",
-        "Do not feed"
+        "Small creatures in a shape of prism.",
+        "They are mostly in a rush, therefore nervous.",
+        "Be careful not to distress them. Do not pet."
     ]
 }
