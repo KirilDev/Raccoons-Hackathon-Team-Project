@@ -19,12 +19,12 @@ scaled_map = pygame.transform.scale(win, minimal_size)
 def mainloop(win,screen,data={}):
     run=True
     test_map=Map()
-    test_map.load_from_path("Resources/Sprites/Hitbocks",100)
-    #test_map.base_image2=pygame.transform.scale(pygame.image.load("Resources\\Sprites\\e_interface.png"),(test_map.base_image.get_width(),test_map.base_image.get_height()))
-    #test_map.base_image2.set_alpha(100)
-    #test_map.base_image.blit(test_map.base_image2,(0,0))
-    #pygame.image.save(test_map.base_image,"HH.png")
-    #exit()
+    test_map.load_from_path("Resources/Sprites/Hitbock",100)
+    test_map.base_image2=pygame.transform.scale(pygame.image.load("Resources\\Sprites\\e_interface.png"),(test_map.base_image.get_width(),test_map.base_image.get_height()))
+    test_map.base_image2.set_alpha(100)
+    test_map.base_image.blit(test_map.base_image2,(0,0))
+    pygame.image.save(test_map.base_image,"HH.png")
+    exit()
     player=Player()
     
     player.entity.x=1
@@ -99,7 +99,7 @@ def mainloop(win,screen,data={}):
         enemy.enemyMove()
         enemy.draw(win)
         win.blit(test_map.base_image,(-camera_x,-camera_y))
-        #win.blit(test_map.base_image2,(-camera_x,-camera_y))
+        win.blit(test_map.base_image2,(-camera_x,-camera_y))
     
         #for x in range(21):
             #true_x=player.entity.x-9
