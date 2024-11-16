@@ -8,11 +8,12 @@
                 "Chance":0.75,
                 "Then":[
                     {
+                        "Deal Damage":4,
                         "Apply Effect":
                         {
-                            "Target":"Self",
+                            "Target":"Enemy",
                             "Effect":{
-                                "Dup":0.10
+                                "Frail":0.15
                         }}
                     },
                     {

@@ -19,7 +19,8 @@ scaled_map = pygame.transform.scale(win, minimal_size)
 def mainloop(win,screen,data={}):
     run=True
     test_map=Map()
-    test_map.load_from_path("Resources/Maps/Test_Map/The Interface",100)
+    test_map.load_from_path("Resources/Maps/Test_Map/alpha",100)
+    test_map.base_image=pygame.image.load("Resources/maps/Test_Map/The Interface.png")
     player=Player()
     
     player.entity.x=1
@@ -103,8 +104,8 @@ def mainloop(win,screen,data={}):
                 #pass
         #pygame.draw.rect(win,(255,0,255),(950,450,100,100))
         win.blit(player_map_sprite,(960,460))
-        win.blit(test_map.discovered_surface,(-camera_x,-camera_y))
-        win.blit(map_visibility_surface,(-camera_x,-camera_y))
+        # win.blit(test_map.discovered_surface,(-camera_x,-camera_y))
+        # win.blit(map_visibility_surface,(-camera_x,-camera_y))
         screen.blit(pygame.transform.scale(win,screen_size),(0,0))
         pygame.display.update()
     # def draw_minimap():
@@ -117,6 +118,6 @@ def mainloop(win,screen,data={}):
 
     #     pygame.draw.rect(minimal_surface, (255,0,0), (minimap_x - 2, minimap_y - 2,4,4))
     #     win.blit(minimal_surface, (10,10))
-Battle(new_matheon1,new_matheon2,screen=screen,win=win)
-#mainloop(win,screen)
+# Battle(new_matheon1,new_matheon2,screen=screen,win=win)
+mainloop(win,screen)
 pygame.quit()

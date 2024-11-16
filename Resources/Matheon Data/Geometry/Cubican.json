@@ -6,7 +6,7 @@
         "Speed":0.04
     },
     "Type":"Geometric",
-    "Sprite Path":"Resources\\Sprites\\cube.png",
+    "Sprite Path":"Resources/Sprites/cube.png",
     "Starting Moves":[
         {
             "Type":"Pool",

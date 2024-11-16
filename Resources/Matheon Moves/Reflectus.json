@@ -1,6 +1,5 @@
 {
     "Type":"Neutral",
-            "Dev comment":" Hup increases self attack power.",
     "Actions":[
         {
 
@@ -13,7 +12,7 @@
                         {
                             "Target":"Self",
                             "Effect":{
-                                "Hup":0.15
+                                "Frail":0.15
                         }}
                     },
                     {
