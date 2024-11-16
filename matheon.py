@@ -23,42 +23,26 @@ class Battle_Matheon:
         self.level=level
         self.data=matheon_data[self.type]
         self.level_exponent=1+self.level/7
-<<<<<<< HEAD
-        self.max_health=(1+self.data["Attributes"]["Health"])**self.level_exponent*30
-        self.defense=(1+self.data["Attributes"]["Defense"])**self.level_exponent
-        self.attack=(1+self.data["Attributes"]["Attack"])**self.level_exponent
-        self.speed=(1+self.data["Attributes"]["Speed"])**self.level_exponent
-=======
         self.base_max_health=(1+self.data["Attributes"]["Health"])**self.level_exponent*30
         self.base_defense=(1+self.data["Attributes"]["Defense"])**self.level_exponent
         self.base_attack=(1+self.data["Attributes"]["Attack"])**self.level_exponent
         self.base_speed=(1+self.data["Attributes"]["Speed"])**self.level_exponent
->>>>>>> a1679899ea6c5618d3d84b70e3043f52734bece2
         self.known_moves=[]
         for i in self.data["Starting Moves"]:
             if i["Type"]=="Pool":
                 self.known_moves+=sample(i["Possible Elements"],i["Selected Elements"])
-<<<<<<< HEAD
-        print(self.known_moves)
-        self.enemy=None
-    def use_move(self,move_name):
-        self.used_move=move_data[move_name]
-        for action in self.used_move["Actions"]:
-
-=======
         self.enemy=None
         self.new_deffense=self.base_defense
         self.new_attack=self.base_attack
         self.new_max_health=self.base_max_health
         self.new_speed=self.base_speed
-        
+        self.sprite=pygame.transform.scale(pygame.image.load(self.data["Sprite Path"]),(400,400))
     def use_move(self,move_name):
         self.used_move=move_data[move_name]
         for action in self.used_move["Actions"]:
->>>>>>> a1679899ea6c5618d3d84b70e3043f52734bece2
             self.do_action(action)
     def do_action(self,action):
-        print(action)
+        #print(action)
         if "If" in action:
             if action["If"]["Type"]=="Random":
                 if random()<action["If"]["Chance"]:
@@ -68,17 +52,6 @@ class Battle_Matheon:
             self.enemy.deal_damage(self,action["Deal Damage"])
     def deal_damage(self,attacker,how_much):
         self.taken_damage=attacker.attack*how_much*(2/3+random())/self.defense
-<<<<<<< HEAD
-        print(self.taken_damage)
-def link(p1,p2):
-    p1.enemy=p2
-    p2.enemy=p1
-#This is used for Matheon Testing
-new_matheon1=Battle_Matheon("Cubican",1)
-new_matheon2=Battle_Matheon("Cubican",1)
-link(new_matheon1,new_matheon2)
-new_matheon1.use_move("Brute Force")
-=======
         self.health-=self.taken_damage
         print(self.taken_damage)
     def apply_effect(self,effect,by_who=None):
@@ -125,6 +98,13 @@ def Battle(controlled_by_player,attacked_player,win,screen):
             animation_data["Frames Left"]-=1
             if animation_data["Frames Left"]>440:
                 win.blit(player_sprite,(60-480*(500-animation_data["Frames Left"])/60,520))
+            if 440>=animation_data["Frames Left"]>340:
+                alpha=(441-animation_data["Frames Left"])/100
+                attacker.sprite.set_alpha(alpha*255)
+                defender.sprite.set_alpha(alpha*255)
+                win.blit(attacker.sprite,(1250,100))
+                win.blit(defender.sprite,(70,530))
+                
         screen.blit(pygame.transform.scale(win,screen.get_size()),(0,0))
         pygame.display.update()
 #This is used for Matheon Testing
@@ -132,5 +112,4 @@ new_matheon1=Battle_Matheon("Cubican",1)
 new_matheon2=Battle_Matheon("Cubican",1)
 
 #new_matheon1.use_move("Brute Force")
->>>>>>> a1679899ea6c5618d3d84b70e3043f52734bece2
 #print(new_matheon2.taken_damage)
