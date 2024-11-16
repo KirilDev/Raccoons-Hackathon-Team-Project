@@ -1,1 +1,28 @@
+{
+    "Type":"Neutral",
+    "Actions":[
+        {
 
+            "If":{
+                "Type":"Random",
+                "Chance":0.40,
+                "Then":[
+                    {
+                        "Deal Damage":5,
+                        "Apply Effect":
+                        {
+                            "Target":"Enemy",
+                            "Effect":{
+                                "Sap":0.06,
+                                "Delay":0.02
+                        }}
+                    },
+                    {
+                        
+                    }
+                ]
+            }
+        }
+        
+    ]
+}
