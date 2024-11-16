@@ -1,19 +1,28 @@
 {
     "Type":"Neutral",
+        "Dev comment":" Pup increases self attack power.",  
     "Actions":[
         {
 
             "If":{
                 "Type":"Random",
-                "Chance":0.75,
+                "Chance":0.60,
                 "Then":[
                     {
-                        "Deal Damage":4,
+                        "Deal Damage":3,
                         "Apply Effect":
                         {
                             "Target":"Enemy",
                             "Effect":{
-                                "Frail":0.15
+                                "Frail":0.10
+                        }}
+                    },
+                    {
+                        "Apply Effect":
+                        {
+                            "Target":"Self",
+                            "Effect":{
+                                "Pup":0.05
                         }}
                     },
                     {
