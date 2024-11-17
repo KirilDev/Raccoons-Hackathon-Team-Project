@@ -65,7 +65,7 @@ class Player:
     def update_state(self):
         if self.state!={}:
             if self.state["Type"]=="Moving Animation":
-                self.state["Frames Left"]=max(0,self.state["Frames Left"]-10)
+                self.state["Frames Left"]=max(0,self.state["Frames Left"]-1)
                 if self.state["Direction"]=="Up":
                     self.display_z=self.entity.z-1+0.1*self.state["Frames Left"]
                 if self.state["Direction"]=="Down":

@@ -94,9 +94,11 @@ def mainloop(win,screen,data={}):
             if keys[pygame.K_LEFT]:
                 player.move(current_map,"Left")
                 player_moved=True
-            #if player_moved:
+            if player_moved:
                 #print(player.entity.x)
                 #update_map()
+                if randint(1,100)==1:
+                    Battle(Battle_Matheon("Cubican",1),Battle_Matheon("Cubican",1),win,screen)
         player.update_state()
 
         

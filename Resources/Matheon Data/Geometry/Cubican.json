@@ -12,7 +12,7 @@
             "Type":"Pool",
             "Selected Elements":1,
             "Possible Elements":[
-                "Brute Force","Liminal Line","Umbrablade"
+                "Brute Force","Liminal Line","Zero Sum"
             ],
             "Dev Comment":"At least 1 offensive move"
         },
