@@ -15,19 +15,19 @@
 },
     "Door Data":{
         "0-0":{
-            "Destination Map Path":"Resources/Maps/Hackathon/Combinatorika"
+            "Destination Map Path":"Resources/Maps/Hackathon/combix"
         },
         "1-3":{
-            "Destination Map Path":"Resources/Maps/Hackathon/Combinatorika"
+            "Destination Map Path":"Resources/Maps/Hackathon/combix"
         },
         "4-4":{
-            "Destination Map Path":"Resources/Maps/Hackathon/Combinatorika"
+            "Destination Map Path":"Resources/Maps/Hackathon/combix"
         },
         "5-5":{
-            "Destination Map Path":"Resources/Maps/Hackathon/Combinatorika"
+            "Destination Map Path":"Resources/Maps/Hackathon/combix"
         },
         "6-7":{
-            "Destination Map Path":"Resources/Maps/Hackathon/Combinatorika"
+            "Destination Map Path":"Resources/Maps/Hackathon/combix"
         }
         
     },

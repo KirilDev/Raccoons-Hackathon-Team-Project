@@ -15,18 +15,19 @@ pygame.display.set_caption('The Raccoons Hackathon Project - Placehoolder')
 minimal_size = (200, 150)
 minimal_surface = pygame.Surface(minimal_size)
 scaled_map = pygame.transform.scale(win, minimal_size)
+run=True
 
 def mainloop(win,screen,data={}):
-    run=True
+    global run
+    current_map=Map()
     if "Level" in data:
         current_map.load_from_path(data["Level"],100)
         #current_map.base_image=pygame.transform.scale(pygame.image.load("Resources\\Sprites\\e_interface.png"),(current_map.base_image.get_width(),current_map.base_image.get_height()))
     else:
-        current_map=Map()
         current_map.load_from_path("Resources/Sprites/Hitbock",100)
     #current_map.base_image=pygame.transform.scale(pygame.image.load(),(current_map.base_image.get_width(),current_map.base_image.get_height()))
     
-        #test_map.base_image2.set_alpha(100)
+    current_map.backup_base_image.set_alpha(100)
     #test_map.base_image.blit(test_map.base_image2,(0,0))
     #pygame.image.save(test_map.base_image,"HH.png")
     #exit()
@@ -78,7 +79,7 @@ def mainloop(win,screen,data={}):
                 run=False
         keys=pygame.key.get_pressed()
         if keys[27]: run=False
-        if frame%10==0:
+        if frame%1==0:
             player_moved=False
             if keys[pygame.K_UP]:
                 player.move(current_map,"Up")
@@ -105,7 +106,8 @@ def mainloop(win,screen,data={}):
         win.fill((0,0,0))
         
         win.blit(current_map.base_image,(-camera_x,-camera_y))
-        
+        win.blit(current_map.backup_base_image,(-camera_x,-camera_y))
+
         for i in player.standing_on:
             if i["Type"]=="Door":
                 center(win,render_text("Press Q to Enter",30,(0,0,0)),1000,900)

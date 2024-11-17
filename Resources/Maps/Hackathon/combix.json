@@ -1,0 +1,22 @@
+{
+    "Layout Data":{
+        "(0, 0, 0)":{
+            "Height":2
+        },
+        "(255, 255, 255)":{
+            "Height":0
+        },
+        "(252, 0, 126)":{
+            "Height":0,
+            "Data":{
+                "Exit Level":{}
+            }
+        }
+    },
+    "Starting Position":{
+        "X":39,
+        "Y":0,
+        "Z":43
+    },
+    "Overlay Image":"Resources/Maps/Hackathon/combix overlay.png"
+}
