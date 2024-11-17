@@ -11,6 +11,18 @@
             "Data":{
                 "Exit Level":{}
             }
+        },
+        "(143, 255, 0)":{
+            "Height":0,
+            "Data":{
+                "Table":{}
+            }
+        },
+        "(0, 192, 255)":{
+            "Height":0,
+            "Data":{
+                "Task Table":{}
+            }
         }
     },
     "Starting Position":{

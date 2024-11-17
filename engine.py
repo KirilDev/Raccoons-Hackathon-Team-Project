@@ -26,7 +26,7 @@ def mainloop(win,screen,data={}):
     else:
         current_map.load_from_path("Resources/Sprites/Hitbock",100)
     #current_map.base_image=pygame.transform.scale(pygame.image.load(),(current_map.base_image.get_width(),current_map.base_image.get_height()))
-    
+    print(current_map.special_data)
     current_map.backup_base_image.set_alpha(100)
     #test_map.base_image.blit(test_map.base_image2,(0,0))
     #pygame.image.save(test_map.base_image,"HH.png")
@@ -38,7 +38,8 @@ def mainloop(win,screen,data={}):
     player.entity.z=current_map.starting_position["Z"]
     player.display_x=player.entity.x
     player.display_z=player.entity.z
-    
+    player.move(current_map,"Don't move, this is for setup")
+    player.update_state()
     enemy=EnemyController(1, 1, 50, 60, (255, 0, 0))
     
     enemy.entity.x=1
@@ -110,11 +111,17 @@ def mainloop(win,screen,data={}):
 
         for i in player.standing_on:
             if i["Type"]=="Door":
-                center(win,render_text("Press Q to Enter",30,(0,0,0)),1000,900)
+                pygame.draw.rect(win,(205,205,205),(830,380,340,40),0,15)
+                center(win,render_text("Press Q to Enter",30,(0,0,0)),1000,400)
                 if keys[pygame.K_q]:
                     mainloop(win,screen,{
                         "Level":i["Redirects To"]
                     })
+            if i["Type"]=="Exit":
+                pygame.draw.rect(win,(205,205,205),(830,380,340,40),0,15)
+                center(win,render_text("Press E to Exit",30,(0,0,0)),1000,400)
+                if keys[pygame.K_e]:
+                    is_running_this_iteration=False
         #enemy.enemyMove()
         #enemy.draw(win)
 

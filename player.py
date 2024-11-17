@@ -53,13 +53,19 @@ class Player:
                             "Direction":"Left",
                             "Frames Left":10
                         }
+            if direction=="Don't move, this is for setup":
+                self.state={
+                    "Type":"Moving Animation",
+                    "Direction":"Neither And All",
+                    "Frames Left":1
+                } #Needed to setup the code
         if self.heightmap==None:
             self.heightmap=heightmap.heightmap
             self.map=heightmap
     def update_state(self):
         if self.state!={}:
             if self.state["Type"]=="Moving Animation":
-                self.state["Frames Left"]-=10
+                self.state["Frames Left"]=max(0,self.state["Frames Left"]-10)
                 if self.state["Direction"]=="Up":
                     self.display_z=self.entity.z-1+0.1*self.state["Frames Left"]
                 if self.state["Direction"]=="Down":
@@ -80,14 +86,20 @@ class Player:
                         self.entity.x+=1
                     if self.heightmap!=None:
                         self.entity.update_vision(self.heightmap)
+                    self.standing_on=[]
                     if "Door" in self.map.special_data:
                         for i in self.map.special_data["Door"]:
                             if self.entity.x==i[0] and self.entity.y==i[1] and self.entity.z==i[2]:
                                 self.standing_on.append({
                                     "Type":"Door",
-                                    "Redirects To":self.map.special_data[i]["Destination Path"]
+                                    "Redirects To":self.map.special_data["Door"][i]["Door Destination Path"]
                                 })
-                        #if self.x==i[0]:
+                    if "Exit Level" in self.map.special_data:
+                        for i in self.map.special_data["Exit Level"]:
+                            if self.entity.x==i[0] and self.entity.y==i[1] and self.entity.z==i[2]:
+                                self.standing_on.append({
+                                    "Type":"Exit"
+                                })
                     self.display_x=self.entity.x
                     self.display_z=self.entity.z
                     self.state={}

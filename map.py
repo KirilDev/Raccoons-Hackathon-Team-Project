@@ -35,19 +35,28 @@ class Map:
                                 if not i in self.special_tiles:
                                     self.special_tiles[i]={}
                                 self.special_tiles[i][(x,map_data["Layout Data"][loaded_pixel]["Height"],y)]={
-                                    ""
+                                    ii:map_data["Layout Data"][loaded_pixel]["Data"][ii] for ii in map_data["Layout Data"][loaded_pixel]["Data"]
                                 }
                 else:
                     print("Unknown Pixel:",loaded_pixel)
                     heightmap_tile_line.append(1)
             new_heightmap.append(heightmap_tile_line)
         if "Door Data" in map_data:
+            self.special_data["Door"]={}
             for i in map_data["Door Data"]:
                 start_and_end=i.split("-")
+                key_list=list(self.special_tiles["Door"].keys())
                 for ii in range(int(start_and_end[0]),int(start_and_end[1])+1):
-                    self.special_data[self.special_tiles["Door"][ii]]={
-                        "Door Destination Path":map_data["Door Data"][i]["Destination Map Path"]
+                    self.special_data["Door"][key_list[ii]]={
+                        "Door Destination Path":map_data["Door Data"][i]["Destination Map Path"],
+                        "Inherited Data":{
+                            iii:self.special_tiles["Door"][key_list[ii]] for iii in self.special_tiles["Door"][key_list[ii]]
+                        }
                     }
+        if "Exit Level" in self.special_tiles:
+            self.special_data["Exit Level"]={
+                i:self.special_tiles["Exit Level"][i] for i in self.special_tiles["Exit Level"]
+            }
         self.discovered_surface=pygame.Surface((loaded_image.get_width()*scale_to,loaded_image.get_height()*scale_to))
         #self.discovered_surface.set_alpha(120)
         self.discovered_surface.set_colorkey((255,255,255))
