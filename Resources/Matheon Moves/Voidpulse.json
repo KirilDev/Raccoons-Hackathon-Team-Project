@@ -6,7 +6,7 @@
 
             "If":{
                 "Type":"Random",
-                "Chance":0.60,
+                "Chance":0.56,
                 "Then":[
                     {
                         "Deal Damage":6,
@@ -14,7 +14,7 @@
                         {
                             "Target":"Enemy",
                             "Effect":{
-                                "Delay":0.02 
+                                "Delay":0.08 
                         }}
                     },
                     {

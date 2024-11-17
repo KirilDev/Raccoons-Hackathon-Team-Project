@@ -5,15 +5,14 @@
 
             "If":{
                 "Type":"Random",
-                "Chance":0.75,
+                "Chance":0.05,
                 "Then":[
                     {
-                        "Deal Damage":4,
                         "Apply Effect":
                         {
                             "Target":"Enemy",
                             "Effect":{
-                                "Frail":0.15
+                                "Frail":0.9
                         }}
                     },
                     {

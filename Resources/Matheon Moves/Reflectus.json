@@ -5,14 +5,14 @@
 
             "If":{
                 "Type":"Random",
-                "Chance":0.75,
+                "Chance":0.7,
                 "Then":[
                     {
                         "Apply Effect":
                         {
                             "Target":"Self",
                             "Effect":{
-                                "Frail":0.15
+                                "Tough":0.20
                         }}
                     },
                     {
