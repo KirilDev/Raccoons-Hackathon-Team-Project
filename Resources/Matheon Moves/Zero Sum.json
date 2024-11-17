@@ -1,6 +1,6 @@
 {
     "Type":"Neutral",
-        "Dev comment":" Pup increases self attack power.",  
+        "Dev comment":" Surge increases self attack power.",  
     "Actions":[
         {
 
@@ -22,11 +22,8 @@
                         {
                             "Target":"Self",
                             "Effect":{
-                                "Pup":0.05
+                                "Surge":0.1
                         }}
-                    },
-                    {
-                        
                     }
                 ]
             }

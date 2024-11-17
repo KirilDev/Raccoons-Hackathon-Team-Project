@@ -1,0 +1,52 @@
+{
+    "Type":"Neutral",
+    "Actions":[
+        {
+            "If":{
+                "Type":"Check Type",
+                "Test For Type":"Calculus",
+                "Target":"Enemy",
+                "Then":[
+                    {
+                    "If":{
+                        "Type":"Random",
+                        "Chance":0.95,
+                        "Then":[
+                            {
+                                "Deal Damage":5,
+                                "Apply Effect":
+                                {
+                                    "Target":"Enemy",
+                                    "Effect":{
+                                        "Frail":0.5
+                                }}
+                            }
+                        ]
+                        }
+                    }
+                ],
+                "Else":[
+                    {
+                    "If":{
+                        "Type":"Random",
+                        "Chance":0.05,
+                        "Then":[
+                            {
+                                "Deal Damage":5,
+                                "Apply Effect":
+                                {
+                                    "Target":"Enemy",
+                                    "Effect":{
+                                        "Frail":0.5
+                                }}
+                            }
+                ]
+            }
+            }
+                ]
+            }
+            
+        }
+        
+    ]
+}

@@ -13,6 +13,7 @@ class Player:
         self.heightmap=None
         self.entity.health_level=100
         self.player_rect = pygame.Rect(0,0,0,0)
+        self.standing_on=[]
         #self.discovered_surface(())
     def move(self,heightmap,direction):
         if self.state=={}:
@@ -54,6 +55,7 @@ class Player:
                         }
         if self.heightmap==None:
             self.heightmap=heightmap.heightmap
+            self.map=heightmap
     def update_state(self):
         if self.state!={}:
             if self.state["Type"]=="Moving Animation":
@@ -78,6 +80,13 @@ class Player:
                         self.entity.x+=1
                     if self.heightmap!=None:
                         self.entity.update_vision(self.heightmap)
+                    for i in self.map.door_data:
+                        if self.entity.x==i[0] and self.entity.y==i[1] and self.entity.z==i[2]:
+                            self.standing_on.append({
+                                "Type":"Door",
+                                "Redirects To":self.map.door_data[i]["Destination Path"]
+                            })
+                        #if self.x==i[0]:
                     self.display_x=self.entity.x
                     self.display_z=self.entity.z
                     self.state={}

@@ -9,13 +9,7 @@
                 "Chance":0.7,
                 "Then":[
                     {
-                        "Deal Damage":3,
-                        "Apply Effect":
-                        {
-                            "Target":"Enemy",
-                            "Effect":{
-                                "Sap":0.05 
-                        }}
+                        "Deal Damage":6
                     },
                     {
                         

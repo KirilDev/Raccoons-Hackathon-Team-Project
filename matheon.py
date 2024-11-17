@@ -27,6 +27,7 @@ class Battle_Matheon:
         self.base_defense=(1+self.data["Attributes"]["Defense"])**self.level_exponent
         self.base_attack=(1+self.data["Attributes"]["Attack"])**self.level_exponent
         self.base_speed=(1+self.data["Attributes"]["Speed"])**self.level_exponent
+        self.origin=self.data["Type"]
         self.known_moves=[]
         for i in self.data["Starting Moves"]:
             if i["Type"]=="Pool":
@@ -46,25 +47,52 @@ class Battle_Matheon:
     def do_action(self,action):
         #print(action)
         if "If" in action:
+            succesful_if=False
             if action["If"]["Type"]=="Random":
                 if random()<action["If"]["Chance"]:
+                    succesful_if=True
                     for nested_action in action["If"]["Then"]:
+                        self.do_action(nested_action)
+            if action["If"]["Type"]=="Check Type":
+                if action["If"]["Target"]=="Enemy":
+                    if self.enemy.origin==action["If"]["Test For Type"]:
+                        succesful_if=True
+                        for nested_action in action["If"]["Then"]:
+                            self.do_action(nested_action)
+            if not succesful_if:
+                if "Else" in action["If"]:
+                    for nested_action in action["If"]["Else"]:
                         self.do_action(nested_action)
         if "Deal Damage" in action:
             self.enemy.deal_damage(self,action["Deal Damage"])
+        if "Apply Effect" in action:
+            if action["Apply Effect"]["Target"]=="Self":
+                self.apply_effect(action["Apply Effect"]["Effect"])
+            elif action["Apply Effect"]["Target"]=="Enemy":
+                self.enemy.apply_effect(action["Apply Effect"]["Effect"])
     def deal_damage(self,attacker,how_much):
-        self.taken_damage=attacker.attack*how_much*(2/3+random())/self.defense
+        self.taken_damage=attacker.new_attack*how_much*(2/3+random())/self.new_defense
         self.new_health-=self.taken_damage
         #print(self.taken_damage)
     def apply_effect(self,effect,by_who=None):
         if "Frail" in effect:
-            self.defense*=1-effect["Frail"]
+            self.new_deffense*=1-effect["Frail"]
+        if "Decay" in effect:
+            self.new_speed*=1-effect["Delay"]
+        if "Sap" in effect:
+            self.new_attack*=1-effect["Sap"]
+        if "Surge" in effect:
+            self.new_attack*=1+effect["Surge"]
+        if "Tough" in effect:
+            self.new_attack*=1+effect["Tough"]
+        
     def draw_bar(self):
+        self.new_health-=0.1
         self.display_health_surface.fill((234,23,4))
         self.health_q=self.new_health/self.base_max_health
         pygame.draw.rect(self.display_health_surface,(200,200,200),(0,0,700,200),0,17)
         pygame.draw.rect(self.display_health_surface,(234,23,4),(20,10,660,60),0,15)
-        pygame.draw.rect(self.display_health_surface,(255-255*self.health_q,255*self.health_q,4),(24,14,652,52),0,15)
+        pygame.draw.rect(self.display_health_surface,(255-255*self.health_q,255*self.health_q,4),(24,14,652*self.health_q,52),0,15)
         center(self.display_health_surface,render_text(self.type,size=23,color=(25,25,25)),70,100)
 class Button:
     def __init__(self,text,color,x_size,y_size):
@@ -153,3 +181,11 @@ new_matheon2=Battle_Matheon("Cubican",1)
 
 #new_matheon1.use_move("Brute Force")
 #print(new_matheon2.taken_damage)
+
+
+# Brute
+# L-hopital
+# 
+#
+#
+#

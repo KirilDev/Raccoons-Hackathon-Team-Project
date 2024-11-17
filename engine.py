@@ -18,18 +18,23 @@ scaled_map = pygame.transform.scale(win, minimal_size)
 
 def mainloop(win,screen,data={}):
     run=True
-    test_map=Map()
-    test_map.load_from_path("Resources/Sprites/Hitbock",100)
-    test_map.base_image2=pygame.transform.scale(pygame.image.load("Resources\\Sprites\\e_interface.png"),(test_map.base_image.get_width(),test_map.base_image.get_height()))
-    test_map.base_image2.set_alpha(100)
-    test_map.base_image.blit(test_map.base_image2,(0,0))
-    pygame.image.save(test_map.base_image,"HH.png")
+    if "Level" in data:
+        current_map.load_from_path(data["Level"],100)
+        #current_map.base_image=pygame.transform.scale(pygame.image.load("Resources\\Sprites\\e_interface.png"),(current_map.base_image.get_width(),current_map.base_image.get_height()))
+    else:
+        current_map=Map()
+        current_map.load_from_path("Resources/Sprites/Hitbock",100)
+    #current_map.base_image=pygame.transform.scale(pygame.image.load(),(current_map.base_image.get_width(),current_map.base_image.get_height()))
+    
+        #test_map.base_image2.set_alpha(100)
+    #test_map.base_image.blit(test_map.base_image2,(0,0))
+    #pygame.image.save(test_map.base_image,"HH.png")
     #exit()
     player=Player()
     
-    player.entity.x=5
-    player.entity.y=0
-    player.entity.z=5
+    player.entity.x=current_map.starting_position["X"]
+    player.entity.y=current_map.starting_position["Y"]
+    player.entity.z=current_map.starting_position["Z"]
     player.display_x=player.entity.x
     player.display_z=player.entity.z
     
@@ -41,22 +46,21 @@ def mainloop(win,screen,data={}):
     enemy.x=enemy.entity.x
     enemy.z=enemy.entity.z
     
-    map_visibility_surface=pygame.Surface((len(test_map.heightmap[0])*100,len(test_map.heightmap)*100))    
-    map_semivisible_surface=pygame.Surface((len(test_map.heightmap[0]),len(test_map.heightmap)))
+    map_visibility_surface=pygame.Surface((len(current_map.heightmap[0])*100,len(current_map.heightmap)*100))    
+    map_semivisible_surface=pygame.Surface((len(current_map.heightmap[0]),len(current_map.heightmap)))
     map_semivisible_surface.set_colorkey((255,255,255))
     map_visibility_surface.set_colorkey((255,255,255))
     map_visibility_surface.set_alpha(100)
-    player.entity.update_vision(test_map.heightmap)
+    player.entity.update_vision(current_map.heightmap)
     
     def update_map():
         map_visibility_surface.fill((0,0,0))
         for i in player.entity.squares_seen:
             pygame.draw.rect(map_visibility_surface,(255,255,255),(i[0]*100,i[2]*100,100,100))
-            pygame.draw.rect(test_map.discovered_surface,(255,255,255),(i[0]*100,i[2]*100,100,100))
+            pygame.draw.rect(current_map.discovered_surface,(255,255,255),(i[0]*100,i[2]*100,100,100))
         for i in player.entity.walls_seen:
             pygame.draw.rect(map_visibility_surface,(255,255,255),(i[0]*100,i[2]*100,100,100))
-            pygame.draw.rect(test_map.discovered_surface,(255,255,255),(i[0]*100,i[2]*100,100,100))
-            
+            pygame.draw.rect(current_map.discovered_surface,(255,255,255),(i[0]*100,i[2]*100,100,100))
     update_map()
     camera_x=0
     camera_y=0
@@ -77,29 +81,42 @@ def mainloop(win,screen,data={}):
         if frame%10==0:
             player_moved=False
             if keys[pygame.K_UP]:
-                player.move(test_map,"Up")
+                player.move(current_map,"Up")
                 player_moved=True
             if keys[pygame.K_DOWN]:
-                player.move(test_map,"Down")
+                player.move(current_map,"Down")
                 player_moved=True
             if keys[pygame.K_RIGHT]:
-                player.move(test_map,"Right")
+                player.move(current_map,"Right")
                 player_moved=True
             if keys[pygame.K_LEFT]:
-                player.move(test_map,"Left")
+                player.move(current_map,"Left")
                 player_moved=True
             #if player_moved:
                 #print(player.entity.x)
                 #update_map()
-        player.update_state()   
+        player.update_state()
+
+        
+
         camera_x=player.display_x*100-950
         camera_y=player.display_z*100-450
         
         win.fill((0,0,0))
-        enemy.enemyMove()
-        enemy.draw(win)
-        win.blit(test_map.base_image,(-camera_x,-camera_y))
-        win.blit(test_map.base_image2,(-camera_x,-camera_y))
+        
+        win.blit(current_map.base_image,(-camera_x,-camera_y))
+        
+        for i in player.standing_on:
+            if i["Type"]=="Door":
+                center(win,render_text("Press Q to Enter",30,(0,0,0)),1000,900)
+                if keys[pygame.K_q]:
+                    mainloop(win,screen,{
+                        "Level":i["Redirects To"]
+                    })
+        #enemy.enemyMove()
+        #enemy.draw(win)
+
+        #win.blit(test_map.base_image2,(-camera_x,-camera_y))
     
         #for x in range(21):
             #true_x=player.entity.x-9

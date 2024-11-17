@@ -6,11 +6,35 @@
     "(255, 255, 255)":{
         "Height":0
     },
-    "(252, 0, 80)":{
+    "(255, 0, 0)":{
         "Height":0,
         "Data":{
             "Door":0
         }
     }
-}
+},
+    "Door Data":{
+        "0-0":{
+            "Destination Map Path":"Resources/Maps/Hackathon/Combinatorika"
+        },
+        "1-3":{
+            "Destination Map Path":"Resources/Maps/Hackathon/Combinatorika"
+        },
+        "4-4":{
+            "Destination Map Path":"Resources/Maps/Hackathon/Combinatorika"
+        },
+        "5-5":{
+            "Destination Map Path":"Resources/Maps/Hackathon/Combinatorika"
+        },
+        "6-7":{
+            "Destination Map Path":"Resources/Maps/Hackathon/Combinatorika"
+        }
+        
+    },
+    "Starting Position":{
+        "X":37,
+        "Y":0,
+        "Z":28
+    },
+    "Overlay Image":"Resources/Sprites/e_interface.png"
 }
